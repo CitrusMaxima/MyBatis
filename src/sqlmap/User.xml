@@ -10,4 +10,12 @@
     <select id="findUserByName" parameterType="java.lang.String" resultType="domain.User">
         SELECT * FROM user WHERE username like '%${value}%'
     </select>
+
+    <!--添加用户-->
+    <insert id="insertUser" parameterType="domain.User">
+        <selectKey keyProperty="id" order="AFTER" resultType="int">
+            SELECT LAST_INSERT_ID()
+        </selectKey>
+        INSERT INTO user VALUE (#{id}, #{username}, #{birthday}, #{sex}, #{address})
+    </insert>
 </mapper>

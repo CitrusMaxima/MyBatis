@@ -11,6 +11,7 @@ import org.junit.Test;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.Date;
 import java.util.List;
 
 
@@ -71,5 +72,28 @@ public class MybatisFirst {
         }
 
         System.out.println(userList.get(0).getUsername());
+    }
+
+    @Test
+    public void testInsertUser() {
+        //通过sqlSessionFactory创建sqlSession
+        SqlSession sqlSession = sqlSessionFactory.openSession();
+
+        User user = new User();
+        user.setUsername("CitrusMaxima");
+        user.setAddress("大连");
+        user.setBirthday(new Date());
+        user.setSex("1");
+
+        try {
+            sqlSession.insert("test.insertUser", user);
+
+            //需要提交事务
+            sqlSession.commit();
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            sqlSession.close();
+        }
     }
 }
