@@ -35,7 +35,7 @@ public class MybatisFirst {
 
     }
 
-    //根据id查找用户
+    //根据id查询用户信息
     @Test
     public void testFinUserById() {
         //通过sqlSessionFactory创建sqlSession
@@ -55,6 +55,7 @@ public class MybatisFirst {
         System.out.println(user);
     }
 
+    //根据用户名模糊查询用户信息
     @Test
     public void testFindUserByName() {
         //通过sqlSessionFactory创建sqlSession
@@ -74,6 +75,7 @@ public class MybatisFirst {
         System.out.println(userList.get(0).getUsername());
     }
 
+    //添加用户
     @Test
     public void testInsertUser() {
         //通过sqlSessionFactory创建sqlSession
@@ -89,6 +91,23 @@ public class MybatisFirst {
             sqlSession.insert("test.insertUser", user);
 
             //需要提交事务
+            sqlSession.commit();
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            sqlSession.close();
+        }
+    }
+
+    //删除用户
+    @Test
+    public void testDeleteUser() {
+
+        SqlSession sqlSession = sqlSessionFactory.openSession();
+
+        try {
+            sqlSession.delete("test.deleteUser", 3);
+
             sqlSession.commit();
         } catch (Exception e) {
             e.printStackTrace();
