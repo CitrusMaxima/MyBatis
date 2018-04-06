@@ -115,4 +115,29 @@ public class MybatisFirst {
             sqlSession.close();
         }
     }
+
+    //更新用户信息
+    @Test
+    public void testUpdateUser() {
+        SqlSession sqlSession = sqlSessionFactory.openSession();
+
+        User user = new User();
+        user.setId(2);
+        user.setUsername("CitrusMaxima");
+        user.setAddress("大连");
+        user.setBirthday(new Date());
+        user.setSex("1");
+
+        try {
+            sqlSession.update("test.updateUser",user);
+
+            sqlSession.commit();
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            sqlSession.close();
+        }
+
+    }
+
 }

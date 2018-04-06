@@ -23,4 +23,9 @@
     <delete id="deleteUser" parameterType="int">
         DELETE FROM user WHERE id = #{id}
     </delete>
+
+    <!--更新用户信息-->
+    <update id="updateUser" parameterType="domain.User">
+        UPDATE user SET username=#{username}, birthday=#{birthday}, sex=#{sex}, address=#{address} WHERE id=#{id}
+    </update>
 </mapper>
