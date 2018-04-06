@@ -4,6 +4,10 @@
 <mapper namespace="test">
     <!--根据id查询用户信息-->
     <select id="findUserById" parameterType="int" resultType="domain.User">
-        SELECT * FROM USER WHERE id = #{id}
+        SELECT * FROM user WHERE id = #{id}
+    </select>
+    <!--根据用户名模糊查询用户信息-->
+    <select id="findUserByName" parameterType="java.lang.String" resultType="domain.User">
+        SELECT * FROM user WHERE username like '%${value}%'
     </select>
 </mapper>

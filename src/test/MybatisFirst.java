@@ -11,6 +11,7 @@ import org.junit.Test;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.List;
 
 
 /**
@@ -35,7 +36,7 @@ public class MybatisFirst {
 
     //根据id查找用户
     @Test
-    public void testFinUserById () {
+    public void testFinUserById() {
         //通过sqlSessionFactory创建sqlSession
         SqlSession sqlSession = sqlSessionFactory.openSession();
 
@@ -51,5 +52,24 @@ public class MybatisFirst {
         }
 
         System.out.println(user);
+    }
+
+    @Test
+    public void testFindUserByName() {
+        //通过sqlSessionFactory创建sqlSession
+        SqlSession sqlSession = sqlSessionFactory.openSession();
+
+        //通过sqlSession操作数据库
+        List<User> userList = null;
+        try {
+            userList = sqlSession.selectList("test.findUserByName", "w");
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            //关闭sqlSession
+            sqlSession.close();
+        }
+
+        System.out.println(userList.get(0).getUsername());
     }
 }
