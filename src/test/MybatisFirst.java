@@ -1,9 +1,8 @@
 package test;
 
-import domain.User;
+import domain.*;
 
-import domain.UserCustom;
-import domain.UserQueryVo;
+import mapper.OrdersMapperCustom;
 import mapper.UserMapper;
 import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.SqlSession;
@@ -176,5 +175,27 @@ public class MybatisFirst {
 
         sqlSession.close();
         System.out.println(users);
+    }
+
+    @Test
+    public void testFindOrderUserList() throws Exception {
+        SqlSession sqlSession = sqlSessionFactory.openSession();
+
+        OrdersMapperCustom ordersMapperCustom = sqlSession.getMapper(OrdersMapperCustom.class);
+
+        List<OrderCustom> orderCustomList = ordersMapperCustom.findOrderUserList();
+
+        System.out.println(orderCustomList);
+    }
+
+    @Test
+    public void testFindOrderUserListResultMap() throws Exception {
+        SqlSession sqlSession = sqlSessionFactory.openSession();
+
+        OrdersMapperCustom ordersMapperCustom = sqlSession.getMapper(OrdersMapperCustom.class);
+
+        List<Orders> ordersList = ordersMapperCustom.findOrderUserListResultMap();
+
+        System.out.println(ordersList);
     }
 }

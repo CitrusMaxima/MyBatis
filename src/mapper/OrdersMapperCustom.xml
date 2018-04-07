@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="mapper.OrdersMapperCustom">
+    <!-- 一对一查询resultMap -->
+    <resultMap id="ordersUserResultMap" type="orders">
+        <id column="id" property="id"></id>
+        <result column="user_id" property="userId"></result>
+        <result column="number" property="number"></result>
+        <result column="createtime" property="createtime"></result>
+        <result column="note" property="note"></result>
+        <!-- 完成关联信息的映射 -->
+        <association property="user" javaType="user">
+            <id column="user_id" property="id" />
+            <result column="username" property="username" />
+            <result column="sex" property="sex" />
+        </association>
+    </resultMap>
+
+    <select id="findOrderUserListResultMap" resultMap="ordersUserResultMap">
+        SELECT orders.*, user.username, user.sex FROM user, orders WHERE orders.user_id = user.id
+    </select>
+    <select id="findOrderUserList" resultType="orderCustom">
+        SELECT orders.*, user.username, user.sex FROM user, orders WHERE orders.user_id = user.id
+    </select>
+</mapper>
