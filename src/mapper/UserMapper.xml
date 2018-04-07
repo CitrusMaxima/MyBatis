@@ -33,4 +33,12 @@
     <select id="findUserList" parameterType="userQueryVo" resultType="user">
         SELECT * FROM user WHERE username LIKE '%${userCustom.username}%'
     </select>
+
+    <!--
+    输出简单类型
+    功能：自定义查询条件，返回查询个数，通常用于实现查询分页
+    -->
+    <select id="findUserCount" parameterType="userQueryVo" resultType="int">
+        SELECT COUNT(*) FROM user WHERE username LIKE '%${userCustom.username}%'
+    </select>
 </mapper>

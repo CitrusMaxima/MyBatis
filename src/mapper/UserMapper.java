@@ -18,4 +18,6 @@ public interface UserMapper {
     public void updateUser(User user) throws Exception;
 
     public List<User> findUserList(UserQueryVo userQueryVo) throws Exception;
+
+    public int findUserCount(UserQueryVo userQueryVo) throws Exception;
 }

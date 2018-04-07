@@ -132,4 +132,23 @@ public class MybatisFirst {
         sqlSession.close();
         System.out.println(users);
     }
+
+    @Test
+    public void findUserCount() throws Exception {
+
+        SqlSession sqlSession = sqlSessionFactory.openSession();
+
+        UserMapper userMapper = sqlSession.getMapper(UserMapper.class);
+
+        UserQueryVo userQueryVo = new UserQueryVo();
+        UserCustom userCustom = new UserCustom();
+
+        userCustom.setUsername("CitrusMaxima");
+        userQueryVo.setUserCustom(userCustom);
+        int count = userMapper.findUserCount(userQueryVo);
+
+        sqlSession.close();
+
+        System.out.println(count);
+    }
 }
