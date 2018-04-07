@@ -2,9 +2,6 @@ package domain;
 
 import java.util.Date;
 
-/**
- * Created by 26637_000 on 2018/4/6.
- */
 public class User
 {
     private int id;

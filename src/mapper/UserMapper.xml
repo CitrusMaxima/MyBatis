@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="mapper.UserMapper">
+    <!--根据id查询用户信息-->
+    <select id="findUserById" parameterType="int" resultType="domain.User">
+        SELECT * FROM user WHERE id = #{id}
+    </select>
+    <!--根据用户名模糊查询用户信息-->
+    <select id="findUserByName" parameterType="java.lang.String" resultType="domain.User">
+        SELECT * FROM user WHERE username like '%${value}%'
+    </select>
+
+    <!--添加用户-->
+    <insert id="insertUser" parameterType="domain.User">
+        <selectKey keyProperty="id" order="AFTER" resultType="int">
+            SELECT LAST_INSERT_ID()
+        </selectKey>
+        INSERT INTO user VALUE (#{id}, #{username}, #{birthday}, #{sex}, #{address})
+    </insert>
+
+    <!--删除用户-->
+    <delete id="deleteUser" parameterType="int">
+        DELETE FROM user WHERE id = #{id}
+    </delete>
+
+    <!--更新用户信息-->
+    <update id="updateUser" parameterType="domain.User">
+        UPDATE user SET username=#{username}, birthday=#{birthday}, sex=#{sex}, address=#{address} WHERE id=#{id}
+    </update>
+</mapper>
