@@ -1,6 +1,7 @@
 package domain;
 
 import java.util.Date;
+import java.util.List;
 
 public class Orders {
 
@@ -14,7 +15,19 @@ public class Orders {
 
     private String note;
 
+    //关联用户信息
     private User user;
+
+    //关联订单明细
+    private List<Orderdetail> orderdetails;
+
+    public List<Orderdetail> getOrderdetails() {
+        return orderdetails;
+    }
+
+    public void setOrderdetails(List<Orderdetail> orderdetails) {
+        this.orderdetails = orderdetails;
+    }
 
     public User getUser() {
         return user;

@@ -198,4 +198,15 @@ public class MybatisFirst {
 
         System.out.println(ordersList);
     }
+
+    @Test
+    public void testFindOrderAndOrderDetails() throws Exception {
+        SqlSession sqlSession = sqlSessionFactory.openSession();
+
+        OrdersMapperCustom ordersMapperCustom = sqlSession.getMapper(OrdersMapperCustom.class);
+
+        List<Orders> ordersList = ordersMapperCustom.findOrderAndOrderDetails();
+
+        System.out.println(ordersList);
+    }
 }
