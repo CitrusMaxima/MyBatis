@@ -9,6 +9,18 @@
         <result column="username_" property="username" />
         <result column="birthday_" property="birthday" />
     </resultMap>
+
+    <sql id="query_user_where">
+        <if test="userCustom!=null">
+            <if test="userCustom.username!=null and userCustom.username!=''">
+                AND username LIKE '%${userCustom.username}%'
+            </if>
+            <if test="userCustom.sex!=null and userCustom!=''">
+                AND sex = #{userCustom.sex}
+            </if>
+        </if>
+    </sql>
+
     <!--根据id查询用户信息-->
     <select id="findUserById" parameterType="int" resultType="user">
         SELECT * FROM user WHERE id = #{id}
@@ -38,7 +50,14 @@
 
     <!--自定义查询条件查询用户信息-->
     <select id="findUserList" parameterType="userQueryVo" resultType="user">
-        SELECT * FROM user WHERE username LIKE '%${userCustom.username}%'
+        SELECT id, username, birthday FROM USER
+        <where>
+            <!--
+            引用sql片段，如果sql片段和引用处不在同一个mapper.xml
+            则必须在前面加上namespace
+            -->
+        <include refid="query_user_where"></include>
+        </where>
     </select>
 
     <!--
@@ -46,7 +65,11 @@
     功能：自定义查询条件，返回查询个数，通常用于实现查询分页
     -->
     <select id="findUserCount" parameterType="userQueryVo" resultType="int">
-        SELECT COUNT(*) FROM user WHERE username LIKE '%${userCustom.username}%'
+        SELECT COUNT(*) FROM user
+        <where>
+            <include refid="query_user_where"></include>
+        </where>
+
     </select>
 
     <!--使用resultMap作结果映射-->
