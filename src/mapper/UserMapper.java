@@ -1,6 +1,7 @@
 package mapper;
 
 import domain.User;
+import domain.UserQueryVo;
 
 import java.util.List;
 
@@ -15,4 +16,6 @@ public interface UserMapper {
     public void deleteUser(int id) throws Exception;
 
     public void updateUser(User user) throws Exception;
+
+    public List<User> findUserList(UserQueryVo userQueryVo) throws Exception;
 }

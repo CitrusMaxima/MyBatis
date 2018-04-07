@@ -28,4 +28,9 @@
     <update id="updateUser" parameterType="user">
         UPDATE user SET username=#{username}, birthday=#{birthday}, sex=#{sex}, address=#{address} WHERE id=#{id}
     </update>
+
+    <!--自定义查询条件查询用户信息-->
+    <select id="findUserList" parameterType="userQueryVo" resultType="user">
+        SELECT * FROM user WHERE username LIKE '%${userCustom.username}%'
+    </select>
 </mapper>

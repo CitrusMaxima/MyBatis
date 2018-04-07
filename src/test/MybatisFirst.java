@@ -2,6 +2,8 @@ package test;
 
 import domain.User;
 
+import domain.UserCustom;
+import domain.UserQueryVo;
 import mapper.UserMapper;
 import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.SqlSession;
@@ -113,4 +115,21 @@ public class MybatisFirst {
 
     }
 
+    @Test
+    public void findUserByList() throws Exception {
+
+        SqlSession sqlSession = sqlSessionFactory.openSession();
+
+        UserMapper userMapper = sqlSession.getMapper(UserMapper.class);
+
+        UserQueryVo userQueryVo = new UserQueryVo();
+        UserCustom userCustom = new UserCustom();
+
+        userCustom.setUsername("CitrusMaxima");
+        userQueryVo.setUserCustom(userCustom);
+        List<User> users = userMapper.findUserList(userQueryVo);
+
+        sqlSession.close();
+        System.out.println(users);
+    }
 }

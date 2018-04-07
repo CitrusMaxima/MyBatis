@@ -26,7 +26,8 @@
     <!--加载mapper.xml-->
     <mappers>
         <!--<mapper resource="sqlmap/User.xml" />-->
-        <mapper resource="mapper/UserMapper.xml" />
+        <!--<mapper resource="mapper/UserMapper.xml" />-->
+        <package name="mapper" />
     </mappers>
 
 </configuration>
