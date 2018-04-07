@@ -18,6 +18,11 @@
             <if test="userCustom.sex!=null and userCustom!=''">
                 AND sex = #{userCustom.sex}
             </if>
+
+            <!--根据id集合查询用户信息-->
+            <foreach collection="ids" open="and id in (" close=")" item="id" separator=",">
+                #{id}
+            </foreach>
         </if>
     </sql>
 

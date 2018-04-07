@@ -14,6 +14,7 @@ import org.junit.Test;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -123,9 +124,17 @@ public class MybatisFirst {
         UserMapper userMapper = sqlSession.getMapper(UserMapper.class);
 
         UserQueryVo userQueryVo = new UserQueryVo();
+
+        //定义一个id集合
+        List<Integer> ids = new ArrayList<>();
+        ids.add(1);
+        ids.add(2);
+        userQueryVo.setIds(ids);
+
         UserCustom userCustom = new UserCustom();
 
         userCustom.setUsername("CitrusMaxima");
+        userCustom.setSex("1");
         userQueryVo.setUserCustom(userCustom);
         List<User> users = userMapper.findUserList(userQueryVo);
 
