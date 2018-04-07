@@ -20,4 +20,7 @@ public interface UserMapper {
     public List<User> findUserList(UserQueryVo userQueryVo) throws Exception;
 
     public int findUserCount(UserQueryVo userQueryVo) throws Exception;
+
+    //查询用户使用resultMap进行映射
+    public List<User> findUserListResultMap(UserQueryVo userQueryVo) throws Exception;
 }

@@ -151,4 +151,21 @@ public class MybatisFirst {
 
         System.out.println(count);
     }
+
+    @Test
+    public void findUserByListResultMap() throws Exception {
+
+        SqlSession sqlSession = sqlSessionFactory.openSession();
+
+        UserMapper userMapper = sqlSession.getMapper(UserMapper.class);
+
+        UserQueryVo userQueryVo = new UserQueryVo();
+        UserCustom userCustom = new UserCustom();
+        userCustom.setUsername("CitrusMaxima");
+        userQueryVo.setUserCustom(userCustom);
+        List<User> users = userMapper.findUserListResultMap(userQueryVo);
+
+        sqlSession.close();
+        System.out.println(users);
+    }
 }

@@ -2,6 +2,13 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="mapper.UserMapper">
+    <!--定义resultMap-->
+    <resultMap id="userListResultMap" type="user">
+        <id column="id_" property="id" />
+        <!--result就是普通列映射配置-->
+        <result column="username_" property="username" />
+        <result column="birthday_" property="birthday" />
+    </resultMap>
     <!--根据id查询用户信息-->
     <select id="findUserById" parameterType="int" resultType="user">
         SELECT * FROM user WHERE id = #{id}
@@ -40,5 +47,10 @@
     -->
     <select id="findUserCount" parameterType="userQueryVo" resultType="int">
         SELECT COUNT(*) FROM user WHERE username LIKE '%${userCustom.username}%'
+    </select>
+
+    <!--使用resultMap作结果映射-->
+    <select id="findUserListResultMap" parameterType="userQueryVo" resultMap="userListResultMap">
+        SELECT id id_, username username_, birthday birthday_ FROM user WHERE username LIKE '%${userCustom.username}%'
     </select>
 </mapper>
