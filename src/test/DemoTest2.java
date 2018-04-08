@@ -1,6 +1,5 @@
 package test;
 
-import dao.UserDao;
 import mapper.UserMapper;
 import org.junit.Before;
 import org.junit.Test;
