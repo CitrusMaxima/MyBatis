@@ -1,6 +1,7 @@
 package test;
 
 import dao.UserDao;
+import mapper.UserMapper;
 import org.junit.Before;
 import org.junit.Test;
 import org.springframework.context.ApplicationContext;
@@ -22,8 +23,8 @@ public class DemoTest2 {
     @Test
     public void testFindUserById() throws Exception {
 
-        UserDao userDao = (UserDao)applicationContext.getBean("userDao");
-        User user = userDao.findUserById(1);
+        UserMapper userMapper = (UserMapper) applicationContext.getBean("userMapper");
+        User user = userMapper.findUserById(1);
 
         System.out.println(user);
     }
