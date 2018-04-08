@@ -1,4 +1,4 @@
-package domain;
+package po;
 
 import java.util.Date;
 
@@ -53,7 +53,7 @@ public class User
 
     @Override
     public String toString() {
-        return "domain.User{" +
+        return "po.User{" +
                 "id=" + id +
                 ", username='" + username + '\'' +
                 ", birthday=" + birthday +

@@ -1,7 +1,7 @@
 package mapper;
 
-import domain.OrderCustom;
-import domain.Orders;
+import po.OrderCustom;
+import po.Orders;
 
 import java.util.List;
 

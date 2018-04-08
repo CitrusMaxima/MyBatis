@@ -1,4 +1,4 @@
-package domain;
+package po;
 
 public class OrderCustom extends Orders {
     //补充用户信息

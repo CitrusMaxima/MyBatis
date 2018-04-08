@@ -1,4 +1,4 @@
-package domain;
+package po;
 
 public class UserCustom extends User {
 

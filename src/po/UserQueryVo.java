@@ -1,4 +1,4 @@
-package domain;
+package po;
 
 import java.util.List;
 

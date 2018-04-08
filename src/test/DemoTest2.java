@@ -1,0 +1,31 @@
+package test;
+
+import dao.UserDao;
+import org.junit.Before;
+import org.junit.Test;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
+import po.User;
+
+/**
+ * Created by 26637_000 on 2018/4/8.
+ */
+public class DemoTest2 {
+
+    private ApplicationContext applicationContext;
+
+    @Before
+    public void setUp() throws Exception {
+        applicationContext = new ClassPathXmlApplicationContext("applicationContext.xml");
+    }
+
+    @Test
+    public void testFindUserById() throws Exception {
+
+        UserDao userDao = (UserDao)applicationContext.getBean("userDao");
+        User user = userDao.findUserById(1);
+
+        System.out.println(user);
+    }
+
+}

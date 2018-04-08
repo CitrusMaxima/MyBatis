@@ -1,7 +1,7 @@
 package mapper;
 
-import domain.User;
-import domain.UserQueryVo;
+import po.User;
+import po.UserQueryVo;
 
 import java.util.List;
 

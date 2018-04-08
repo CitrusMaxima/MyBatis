@@ -1,6 +1,6 @@
 package test;
 
-import domain.*;
+import po.*;
 
 import mapper.OrdersMapperCustom;
 import mapper.UserMapper;
@@ -17,7 +17,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-public class MybatisFirst {
+public class DemoTest {
 
     private SqlSessionFactory sqlSessionFactory;
 
